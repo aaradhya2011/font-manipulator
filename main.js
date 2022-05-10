@@ -1,3 +1,6 @@
+leftWristX=0
+rightWristX=0
+difference=0
 function setup()
 {
     video=createCapture(VIDEO);
@@ -18,12 +21,18 @@ function modelLoaded()
 function draw()
 {
     background('grey');
+    textSize(difference);
+    fill("pink");
+    text("Aaradhya",200,200)
 }
 
-function gotPoses()
+function gotPoses(results)
 {
     if(results.length > 0)
     {
-        comsole.log(results);
+        console.log(results);
+        leftWristX=results[0].pose.leftWrist.x;
+        rightWristX=results[0].pose.rightWrist.x;
+        difference=floor(leftWristX-rightWristX)
     }
 }
